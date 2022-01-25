@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, g, redirect, flash, url_for
 import sqlite3
 import os
-from FDataBase import FDataBase
+from service.FDataBase import FDataBase
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
-from UserLogin import UserLogin
+from service.UserLogin import UserLogin
 
 # конфигурация
 DATABASE = '/tmp/flsite.db'
@@ -28,7 +28,6 @@ def connect_db():
     conn = sqlite3.connect(app.config['DATABASE'])
     conn.row_factory = sqlite3.Row
     return conn
-
 
 def create_db():
     """Создание БД если она не была созданна"""
